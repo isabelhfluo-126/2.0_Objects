@@ -45,6 +45,7 @@ public class BasicGameApp implements Runnable {
 	public Astronaut astro;
 	//todo:make a new astronaut astro2
 	public Astronaut astro2;
+	public Astronaut astro3;
 
 
 
@@ -70,10 +71,18 @@ public class BasicGameApp implements Runnable {
 		astroPic = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
 		astro = new Astronaut(10,100);
 		astro2= new Astronaut(300,10);
+		astro3 = new Astronaut((int)(Math.random()*10)+1,(int)(Math.random()*10)+1);
 		astro.dx=25;
 		//todo:give astro2 dy a random number between [1,10]
 		astro2.dy= (int)(Math.random()*10)+1;
-		System.out.println(astro2.dy);
+		astro3.dx = (int)(Math.random()*10)+1;
+		astro3.dy = (int)(Math.random()*10)+1;
+
+
+		System.out.println(astro3.dx);
+		System.out.println(astro3.dy);
+		System.out.println(astro3.xpos);
+		System.out.println(astro3.ypos);
 
 
 	}// BasicGameApp()
@@ -103,6 +112,7 @@ public class BasicGameApp implements Runnable {
       //calls the move( ) code in the objects
 		astro.move();
 		astro2.move();
+		astro3.move();
 
 	}
 	
@@ -157,6 +167,7 @@ public class BasicGameApp implements Runnable {
       //draw the image of the astronaut
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
 		g.drawImage(astroPic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
+		g.drawImage(astroPic, astro3.xpos, astro3.ypos, astro3.width, astro3.height, null);
 
 		//end coding here
 		g.dispose();
