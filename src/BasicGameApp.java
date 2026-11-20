@@ -115,21 +115,19 @@ public class BasicGameApp implements Runnable {
       //calls the move( ) code in the objects
 		crashing();
 		astro.move();
-        if (astro2.isAlive != true) {
+        if (astro2.isAlive == true) {
             astro2.move();
         }
         astro3.move();
 
 	}
 
-	public boolean hasCrashed = false;
 	public void crashing() {
-		if (astro.hitBox.intersects(astro2.hitBox) && !hasCrashed) {
+		if (astro.hitBox.intersects(astro2.hitBox) && astro.isCrashing==false && astro2.isAlive==true) { //when they are intersecting
 			System.out.println("crash");
 			astro.dx = -astro.dx;
 			astro2.dx = -astro2.dx;
 			//if the values get flipped but they might be still the same so the computer still thinks they are intersecting
-			hasCrashed = true;
 			astro2.isAlive=false;
 
 			astro.width = astro.width+10;
@@ -137,10 +135,12 @@ public class BasicGameApp implements Runnable {
 			astro2.width = astro2.width+10;
 			astro2.height = astro2.height+10;
 
+			astro.isCrashing = true;
 
 		}
-		if(!astro.hitBox.intersects(astro2.hitBox)){
-			hasCrashed=false;
+
+		if(!astro.hitBox.intersects(astro2.hitBox)){//when they are not intersecting
+			astro.isCrashing = false;
 		}
 
 	}

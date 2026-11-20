@@ -16,6 +16,7 @@ public class Astronaut {
     public int height;
     public boolean isAlive;
     public Rectangle hitBox;//a boolean to denote if the hero is alive or dead.
+    public boolean isCrashing;
 
 
     // METHOD DEFINITION SECTION
@@ -35,6 +36,7 @@ public class Astronaut {
         height = 60;
         isAlive = true;
         hitBox = new Rectangle(xpos+1, ypos+1, width, height);
+        isCrashing = false;
  
     } // constructor
 
