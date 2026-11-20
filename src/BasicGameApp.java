@@ -75,7 +75,7 @@ public class BasicGameApp implements Runnable {
 		astro = new Astronaut(10,100);
 		astro2= new Astronaut(300,10);
 		astro3 = new Astronaut((int)(Math.random()*10)+1,(int)(Math.random()*10)+1);
-		astro.dx=25;
+		astro.dx=10;
 		//todo:give astro2 dy a random number between [1,10]
 		astro2.dy= (int)(Math.random()*10)+1;
 		astro3.dx = (int)(Math.random()*10)+1;
@@ -115,16 +115,32 @@ public class BasicGameApp implements Runnable {
       //calls the move( ) code in the objects
 		crashing();
 		astro.move();
-		astro2.move();
-		astro3.move();
+        if (astro2.isAlive != true) {
+            astro2.move();
+        }
+        astro3.move();
 
 	}
+
+	public boolean hasCrashed = false;
 	public void crashing() {
-		if (astro.hitBox.intersects(astro2.hitBox)) {
+		if (astro.hitBox.intersects(astro2.hitBox) && !hasCrashed) {
 			System.out.println("crash");
 			astro.dx = -astro.dx;
 			astro2.dx = -astro2.dx;
+			//if the values get flipped but they might be still the same so the computer still thinks they are intersecting
+			hasCrashed = true;
+			astro2.isAlive=false;
 
+			astro.width = astro.width+10;
+			astro.height = astro.height+10;
+			astro2.width = astro2.width+10;
+			astro2.height = astro2.height+10;
+
+
+		}
+		if(!astro.hitBox.intersects(astro2.hitBox)){
+			hasCrashed=false;
 		}
 
 	}
@@ -180,8 +196,10 @@ public class BasicGameApp implements Runnable {
 
 
       //draw the image of the astronaut
-		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width= 100, astro.height=20, null);
-		g.drawImage(astroPic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
+		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
+		if(astro2.isAlive==true){
+			g.drawImage(astroPic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
+		}
 		g.drawImage(astroPic, astro3.xpos, astro3.ypos, astro3.width, astro3.height, null);
 
 		//end coding here

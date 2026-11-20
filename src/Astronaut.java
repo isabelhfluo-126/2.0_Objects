@@ -34,7 +34,7 @@ public class Astronaut {
         width = 60;
         height = 60;
         isAlive = true;
-        hitBox = new Rectangle(xpos, ypos, width, height);
+        hitBox = new Rectangle(xpos+1, ypos+1, width, height);
  
     } // constructor
 
